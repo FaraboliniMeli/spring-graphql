@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+
+  mongo-db:
+    environment:
+      - MONGO_INITDB_DATABASE=GraphQlCrud
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+    image: mongo:latest
+    container_name: mongo-db
+    command: ["--auth"]
+    restart: always
+    volumes:
+      - ./data/.dbshell:/home/mongodb/.dbshell
+      - ./data/db:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - spring-mongo
+    ports:
+      - "27017:27017"
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo localhost:27017/GraphQlCrud --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+
+  graphql-app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: always
+    container_name: graphql-app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATA_MONGODB_HOST: mongo-db
+      SPRING_DATA_MONGODB_PORT: 27017
+      SPRING_DATA_MONGODB_DATABASE: GraphQlCrud
+      SPRING_DATA_MONGODB_USERNAME: graphQlAdmin
+      SPRING_DATA_MONGODB_PASSWORD: graphQlAdmin
+      server.address: 0.0.0.0
+    networks:
+      - spring-mongo
+    depends_on:
+      mongo-db:
+        condition: service_healthy
+
+networks:
+  spring-mongo:
+    name: spring-mongo
+    driver: bridge

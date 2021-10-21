@@ -1,0 +1,20 @@
+mutation {
+    updateAccount(username: "Test Account", fieldsToUpdate: {
+        username: "New Test Account",
+        address: {
+            street: "Rua Teste 10",
+            country: "United States"
+        }
+    }) {
+        username
+        email
+        address {
+            country
+            state
+            city
+            district
+            street
+            zip_code
+        }
+    }
+}

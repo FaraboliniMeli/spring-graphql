@@ -1,0 +1,9 @@
+query {
+    findAccount(username: "Test Account") {
+        social_medias {
+            instagram,
+            facebook,
+            twitter,
+        }
+    }
+}

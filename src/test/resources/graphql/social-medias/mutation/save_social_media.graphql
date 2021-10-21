@@ -1,0 +1,13 @@
+mutation {
+    save(socialMedia : {
+        account_username: "Test Account",
+        instagram: "@Test"
+        facebook: "Test Account"
+        twitter: "@Test"
+    }) {
+        account_username,
+        instagram,
+        facebook,
+        twitter
+    }
+}

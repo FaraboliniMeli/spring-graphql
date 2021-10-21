@@ -1,0 +1,44 @@
+input Address {
+    country: String,
+    state: String,
+    city: String,
+    district: String,
+    street: String,
+    zip_code: String,
+}
+
+input UserAccount {
+    id: String,
+    username: String,
+    email: String,
+    address: Address,
+}
+
+type UserAccountResponse {
+    username: String,
+    email: String,
+    address: AddressResponse,
+    social_medias: SocialMediaResponse,
+}
+
+type AddressResponse {
+    country: String,
+    state: String,
+    city: String,
+    district: String,
+    street: String,
+    zip_code: String,
+}
+
+extend type Query {
+    findAccount(username: String) : UserAccountResponse
+    findAllAccounts : [UserAccountResponse]
+
+}
+
+extend type Mutation {
+    deleteAccount(username: String) : UserAccountResponse
+    saveAccount(userAccount: UserAccount) : UserAccountResponse
+    updateAccount(username: String, fieldsToUpdate: UserAccount) : UserAccountResponse
+    deleteAll : Boolean
+}

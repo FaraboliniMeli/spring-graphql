@@ -1,0 +1,8 @@
+query {
+    findAll {
+        account_username
+        instagram,
+        facebook,
+        twitter
+    }
+}

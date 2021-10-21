@@ -1,0 +1,6 @@
+query {
+    findAllAccounts {
+        username,
+        email,
+    }
+}

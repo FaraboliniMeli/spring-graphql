@@ -1,0 +1,9 @@
+mutation {
+    update(account_username: "Test Account", fieldsToUpdate: {
+        instagram: "@NewTest"
+    }) {
+        instagram,
+        twitter,
+        facebook,
+    }
+}

@@ -1,0 +1,24 @@
+input SocialMedia {
+    account_username: String,
+    instagram: String,
+    facebook: String,
+    twitter: String,
+}
+
+type SocialMediaResponse {
+    account_username: String,
+    instagram: String,
+    facebook: String,
+    twitter: String,
+}
+
+extend type Query {
+    findSocialMedia(account_username: String) : SocialMediaResponse
+    findAll : [SocialMediaResponse]
+}
+
+extend type Mutation {
+    save(socialMedia: SocialMedia) : SocialMediaResponse
+    update(account_username: String, fieldsToUpdate: SocialMedia) : SocialMediaResponse
+    deleteAllSocialMedias : Boolean
+}

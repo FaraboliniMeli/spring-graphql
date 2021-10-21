@@ -1,0 +1,14 @@
+query {
+    findAccount(username: "New Test Account") {
+        username
+        email
+        address {
+            country
+            state
+            city
+            district
+            street
+            zip_code
+        }
+    }
+}

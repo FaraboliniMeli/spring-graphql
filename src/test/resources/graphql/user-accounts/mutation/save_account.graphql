@@ -1,0 +1,25 @@
+mutation {
+    saveAccount(userAccount : {
+        username: "Test Account",
+        email: "test@test.com"
+        address: {
+            country: "Brazil",
+            state: "São Paulo",
+            city: "São Paulo",
+            district: "Test District",
+            street: "Test Street 10",
+            zip_code: "00000-000"
+        }
+    }) {
+        username
+        email
+        address {
+            country
+            state
+            city
+            district
+            street
+            zip_code
+        }
+    }
+}

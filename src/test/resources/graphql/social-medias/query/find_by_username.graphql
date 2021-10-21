@@ -1,0 +1,7 @@
+query {
+    findSocialMedia(account_username: "Test Account") {
+        instagram,
+        facebook,
+        twitter
+    }
+}

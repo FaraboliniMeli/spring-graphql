@@ -1,0 +1,5 @@
+query {
+    findAccount(username: "Test Account") {
+        email,
+    }
+}
